@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+from . import credentials as crd
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -129,14 +130,14 @@ STATICFILES_DIRS = [
 
 ]
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-AWS_ACCESS_KEY_ID = 'AKIAJMEAYFCF57Y7EZXA'
-AWS_SECRET_ACCESS_KEY = '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'
-AWS_STORAGE_BUCKET_NAME = 'family-album-bucket'
-AWS_QUERYSTRING_AUTH = False
-AWS_S3_CUSTOM_DOMAIN = '%s.s3.amazonaws.com' % AWS_STORAGE_BUCKET_NAME
-MEDIA_ROOT = "https://family-album-bucket.s3.amazonaws.com/"
-MEDIA_URL = '/images/'
+DEFAULT_FILE_STORAGE = crd.DEFAULT_FILE_STORAGE
+AWS_ACCESS_KEY_ID = crd.AWS_ACCESS_KEY_ID
+AWS_SECRET_ACCESS_KEY = crd.AWS_SECRET_ACCESS_KEY
+AWS_STORAGE_BUCKET_NAME = crd.AWS_STORAGE_BUCKET_NAME
+AWS_QUERYSTRING_AUTH = crd.AWS_QUERYSTRING_AUTH
+AWS_S3_CUSTOM_DOMAIN = crd.AWS_S3_CUSTOM_DOMAIN
+MEDIA_ROOT = crd.MEDIA_ROOT
+MEDIA_URL = crd.MEDIA_URL
 
 
 MEDIAFILES_DIRS = (

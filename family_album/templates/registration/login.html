@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% load bootstrap %}
+{% block content %}
+<div class="login-form">
+    <form method="POST">
+        {% csrf_token %}
+        {{form|bootstrap}}
+        <input type="submit" value="login" class="btn btn-default btn-lg">
+    </form>
+</div>
+{% endblock %}

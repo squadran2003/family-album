@@ -1,0 +1,99 @@
+{% load static from staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>My Family Album</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato|Playfair+Display" rel="stylesheet">
+
+
+    <!-- Bootstrap core CSS -->
+
+    <link href="{% static "vendor/bootstrap/css/bootstrap.min.css" %}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="{% static "css/thumbnail-gallery.css" %}" rel="stylesheet">
+    <link href="{% static "css/mystyles.css" %}" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="{% url 'images:home' %}">Family Album</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'images:home' %}">Home
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            {% if user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'images:upload' %}">Upload a Image
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'images:home' user_id=user.id %}">Your Images
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="/accounts/logout">Logout
+                <span class="sr-only"></span>
+              </a>
+            </li>
+            {% else %}
+                <li class="nav-item active">
+                  <a class="nav-link" href="/accounts/login">Login
+                    <span class="sr-only"></span>
+                  </a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'signups:signup' %}">Create a account
+                    <span class="sr-only"></span>
+                  </a>
+                </li>
+            {% endif %}
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <div class="container">
+        {% block content%}
+        {% endblock %}
+
+    </div>
+    <!-- /.container -->
+
+    <!-- Footer -->
+    <footer class="py-5 footer">
+      <div class="container">
+        <p class="m-0 text-center text-white">Copyright &copy; familyAlbum 2019</p>
+      </div>
+      <!-- /.container -->
+    </footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="{% static "vendor/jquery/jquery.min.js" %}"></script>
+    <script src="{% static "vendor/bootstrap/js/bootstrap.bundle.min.js" %}"></script>
+    <script src="{% static "vendor/script.js" %}"></script>
+
+  </body>
+
+</html>
